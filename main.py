@@ -25,10 +25,10 @@ print(retorno)
 
 # #NOTE - Criar task no Asana
 dicionarios_dados_card = metodos_trello.get_dados_card(id_card_trello)
-name_task = dicionarios_dados_card["nome_card"]
+nome_task = dicionarios_dados_card["nome_card"]
 descricao_task = dicionarios_dados_card["descricao_card"]
 prazo_task = dicionarios_dados_card["data_entrega"]
-api_asana.criar_task(project_id_asana, name_task,descricao_task, prazo_task,workspace_gid_asana )
+api_asana.criar_task(project_id_asana, nome_task,descricao_task, prazo_task,workspace_gid_asana )
 
 # #NOTE - Deletar task e projeto Asana
 api_asana.delete_task(task_gid)
