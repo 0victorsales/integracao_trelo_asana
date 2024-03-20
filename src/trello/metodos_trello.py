@@ -1,12 +1,11 @@
-# import api_trello 
 from src.trello import api_trello
 
 
 def get_dados_card(id_card):
     """
     Responsavel por obter dados do card do trelo
-    parametro:
-        -id do card trello
+    Parâmetros:
+        -id_card (str): O id do card trello
     return
         -dicionarios contendo nome do card, descricao e data de entrega da task
     """
@@ -22,9 +21,28 @@ def get_dados_card(id_card):
         "data_entrega": data_entrega
     }
     return dic_dados
-id_card_trello = "65fad030e459d83df2a6a74c"
-a = get_dados_card(id_card_trello)
-print(a)
+
+def get_dados_board(id_board):
+    """
+    Retorna o nome de um board do Trello com base em seu ID.
+
+    Parâmetros:
+        id_board (str): O ID do board no Trello.
+
+    Retorna:
+        str: O nome do board.
+
+ 
+
+    Exemplo:
+        get_dados_board('65fad02fbeee90fcbd0464fb')
+        
+    """
+    dados_board = api_trello.get_board(id_board)
+    nome_board = dados_board["name"]
+    return nome_board
+
+
 
 
 

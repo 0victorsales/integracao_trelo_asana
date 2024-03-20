@@ -4,13 +4,12 @@ import os
 load_dotenv()
 
 
-id_board = "65fad02fbeee90fcbd0464fb"
 id_list = "65faefe454b3961d12ef4bd1"
 api_key = os.getenv('API_KEY')
 token = os.getenv('TOKEN')
 
 #SECTION - sessão Board
-def get_board():
+def get_board(id_board):
     try:
         url = f"https://api.trello.com/1/boards/{id_board}"
 
@@ -168,6 +167,8 @@ def criar_list(nome_list,id_board ):
         return response.json()
     except Exception as e:
         print('Não foi criar list', e)
+
+
 
 
 
