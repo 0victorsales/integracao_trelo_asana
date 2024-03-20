@@ -1,5 +1,5 @@
-from src.trello import metodos_trello
-from src.asana import metodos_asana
+from trello import funcs_trello
+from src.asana import funcs_asana
 from src.asana import api_asana
 from src.trello import api_trello
 
@@ -19,12 +19,12 @@ project_gid = "1206889635666466"
 
 #SECTION - Asana
 #NOTE - Criar projeto Asana
-nome_projeto = metodos_trello.get_dados_board(board_id)
+nome_projeto = funcs_trello.get_dados_board(board_id)
 retorno = api_asana.criar_project(nome_projeto,workspace_gid_asana)
 print(retorno)
 
 # #NOTE - Criar task no Asana
-dicionarios_dados_card = metodos_trello.get_dados_card(id_card_trello)
+dicionarios_dados_card = funcs_trello.get_dados_card(id_card_trello)
 nome_task = dicionarios_dados_card["nome_card"]
 descricao_task = dicionarios_dados_card["descricao_card"]
 prazo_task = dicionarios_dados_card["data_entrega"]
@@ -38,11 +38,11 @@ api_asana.delete_project(project_gid)
 
 #SECTION - Trello
 #NOTE - Criar board trello
-nome_projeto = metodos_asana.get_dados_projeto(project_gid)
+nome_projeto = funcs_asana.get_dados_projeto(project_gid)
 api_trello.criar_board(nome_projeto)
 
 #NOTE - Criar card
-dados_task = metodos_asana.get_dados_task(task_gid)
+dados_task = funcs_asana.get_dados_task(task_gid)
 nome_task = dados_task["nome_task"]
 descricao_task = dados_task["descricao_task"]
 data_conclusao = dados_task["data_conclusao"]
