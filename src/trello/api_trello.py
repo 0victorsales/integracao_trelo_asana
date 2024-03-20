@@ -1,12 +1,10 @@
 import requests
-import json
 from dotenv import load_dotenv
 import os 
 load_dotenv()
 
 
 id_board = "65fad02fbeee90fcbd0464fb"
-id_card = "65fad2d066a81cb167fc5f9e"
 id_list = "65faefe454b3961d12ef4bd1"
 api_key = os.getenv('API_KEY')
 token = os.getenv('TOKEN')
@@ -33,7 +31,7 @@ def get_board():
         
 
 
-def delete_board():
+def delete_board(id_board):
     try:
         url = f"https://api.trello.com/1/boards/{id_board}"
 
@@ -47,12 +45,12 @@ def delete_board():
     except Exception as e:
         print('Não foi possivel deletar o board, erro:', e)
 
-def criar_board():
+def criar_board(nome_board):
     try:
         url = "https://api.trello.com/1/boards/"
 
         query = {
-            'name': '{name}',
+            'name':nome_board,
             'key': api_key,
             'token': token
         }
@@ -83,7 +81,7 @@ def get_card(id_card):
     except Exception as e:
         print('Não foi possivel obter dados do card, erro:', e)
 
-def delete_card():
+def delete_card(id_card):
     try:
         url = f"https://api.trello.com/1/cards/{id_card}"
 
@@ -97,7 +95,7 @@ def delete_card():
     except Exception as e:
         print('Não foi possivel deletar o card, erro:',e)
 
-def criar_card():
+def criar_card(id_list,nome_card,descricao_card,prazo_task):
     try:
         url = "https://api.trello.com/1/cards"
 
@@ -106,9 +104,12 @@ def criar_card():
         }
 
         query = {
-            'idList': '65faf238b94a14f07702ef2e',
+            'idList': id_list,
             'key': api_key,
             'token': token,
+            'name': nome_card,
+            'desc': descricao_card,
+            'due': prazo_task
             
         }
 
@@ -136,7 +137,7 @@ def get_list():
     except Exception as e:
         print('Não foi possivel obter listas', e)
 
-def arquivar_list():
+def arquivar_list(id_list):
     try:
         url = f"https://api.trello.com/1/lists/{id_list}/closed"
 
@@ -152,13 +153,13 @@ def arquivar_list():
         print('Não foi possivel arquivar a lista, erro:', e)
 
 
-def criar_list():
+def criar_list(nome_list,id_board ):
     try:
         url = "https://api.trello.com/1/lists"
 
         query = {
-            'name': '{name}',
-            'idBoard': '65faf238b94a14f07702ef27',
+            'name': nome_list,
+            'idBoard': id_board,
             'key': api_key,
             'token': token
         }
@@ -167,7 +168,6 @@ def criar_list():
         return response.json()
     except Exception as e:
         print('Não foi criar list', e)
-
 
 
 

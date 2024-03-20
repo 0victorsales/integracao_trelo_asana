@@ -1,11 +1,15 @@
-import api_asana
+from src.asana import api_asana
 
-def criar_task_asana(project_id_asana,name_task,descricao_task,prazo_task ):
-    project_id_asana = project_id_asana
-    name_task = name_task
-    descricao_task = descricao_task
-    prazo_task = prazo_task    
-    api_asana.criar_task(project_id_asana, name_task,descricao_task, prazo_task)
+def get_dados_task(task_gid):
+    dados_task = api_asana.get_task(task_gid)
+    nome_task = dados_task["name"]
+    descricao_task = dados_task["notes"]
+    data_conclusao = dados_task["due_at"]
+    dicionario_task = {
+            "nome_task":nome_task,
+            "descricao_task": descricao_task,
+            "data_conclusao": data_conclusao
+            }
+    return dicionario_task
    
 
-criar_task_asana()
