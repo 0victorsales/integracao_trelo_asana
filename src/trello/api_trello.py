@@ -5,7 +5,7 @@ import os
 load_dotenv()
 
 
-id_board = "65faf284bcd3f67e35adde15"
+id_board = "65fad02fbeee90fcbd0464fb"
 id_card = "65fad2d066a81cb167fc5f9e"
 id_list = "65faefe454b3961d12ef4bd1"
 api_key = os.getenv('API_KEY')
@@ -65,7 +65,7 @@ def criar_board():
 
 
 #SECTION - Sessao card
-def get_card():
+def get_card(id_card):
     try:
         url = f"https://api.trello.com/1/cards/{id_card}"
 
@@ -175,5 +175,4 @@ def criar_list():
 
 
 
-a = get_board()
-print(a)
+
